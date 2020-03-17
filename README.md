@@ -1,3 +1,2 @@
-# DataBase-Management-System
-CSE 510 Project
-# project 2: implement big table based on MiniBase
+# CSE 510: DBMS Project
+project 2: implement big table based on MiniBase
