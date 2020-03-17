@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4135d654-1f20-426b-b25d-d3f487bae631" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZC4D6XKTLNFohRu9Sbv63XtF1X" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\iterator" />
+      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\index" />
+      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\catalog" />
+      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\btree" />
+      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\heap" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="project2_main_func" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project2_main_func" />
+      <module name="project2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.project2_main_func" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4135d654-1f20-426b-b25d-d3f487bae631" name="Default Changelist" comment="" />
+      <created>1584329619542</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584329619542</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="233" y="2" key="#Project_Structure" timestamp="1584329640523">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="2" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1584329640523" />
+    <state x="371" y="99" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1584342276142">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="99" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1584342276142" />
+    <state x="612" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584339493591">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="612" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1584339493591" />
+    <state width="708" height="2" key="GridCell.Tab.0.bottom" timestamp="1584407925402">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="708" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584407925402" />
+    <state width="708" height="2" key="GridCell.Tab.0.center" timestamp="1584407925402">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="708" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1584407925402" />
+    <state width="708" height="2" key="GridCell.Tab.0.left" timestamp="1584407925402">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="708" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1584407925402" />
+    <state width="708" height="2" key="GridCell.Tab.0.right" timestamp="1584407925402">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="708" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1584407925402" />
+    <state x="153" y="38" key="SettingsEditor" timestamp="1584330044106">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="153" y="38" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1584330044106" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1584381082344">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584381082344" />
+    <state x="507" y="159" key="run.anything.popup" timestamp="1584394890737">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="507" y="159" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1584394890737" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/BigT/MapPage.java</url>
+          <line>526</line>
+          <properties class="BigT.MapPage" method="getRecord">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/diskmgr/bigDB.java</url>
+          <line>57</line>
+          <properties class="diskmgr.bigDB" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/BigT/Map.java</url>
+          <line>44</line>
+          <properties field="fldCnt" class="BigT.Map" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BigT/Map.java</url>
+          <line>488</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/catalog/Utility.java</url>
+          <line>278</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BigT/Stream.java</url>
+          <line>646</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/diskmgr/bigDB.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
