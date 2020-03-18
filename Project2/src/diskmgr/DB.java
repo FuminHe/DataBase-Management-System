@@ -57,8 +57,8 @@ public class DB implements GlobalConst {
    * Create a database with the specified number of pages where the page
    * size is the default page size.
    *
-   * @param name DB name
-   * @param num_pages number of pages in DB
+   * @param fname DB name
+   * @param num_pgs number of pages in DB
    *
    * @exception IOException I/O errors
    * @exception InvalidPageNumberException invalid page number
@@ -149,6 +149,7 @@ public class DB implements GlobalConst {
     byte [] buffer = apage.getpage();  //new byte[MINIBASE_PAGESIZE];
     try{
       fp.read(buffer);
+      pcounter.readIncrement();
     }
     catch (IOException e) {
       throw new FileIOException(e, "DB file I/O error");
@@ -179,6 +180,7 @@ public class DB implements GlobalConst {
     // Write the appropriate number of bytes.
     try{
       fp.write(apage.getpage());
+      pcounter.writeIncrement();
     }
     catch (IOException e) {
       throw new FileIOException(e, "DB file I/O error");
@@ -212,7 +214,7 @@ public class DB implements GlobalConst {
   /** user specified run_size
    *
    * @param start_page_num the starting page id of the run of pages
-   * @param run_size the number of page need allocated
+   * @param runsize the number of page need allocated
    *
    * @exception OutOfSpaceException No space left
    * @exception InvalidRunSizeException invalid run size 
@@ -334,9 +336,7 @@ public class DB implements GlobalConst {
    *  with run size = 1
    *
    * @param start_page_num the start pageId to be deallocate
-   * @param run_size the number of pages to be deallocated
-   *
-   * @exception InvalidRunSizeException invalid run size 
+   * @exception InvalidRunSizeException invalid run size
    * @exception InvalidPageNumberException invalid page number
    * @exception FileIOException file I/O error
    * @exception IOException I/O errors
@@ -809,7 +809,6 @@ public class DB implements GlobalConst {
 
   /**
    * short cut to access the pinPage function in bufmgr package.
-   * @see bufmgr.pinPage
    */
   private void pinPage(PageId pageno, Page page, boolean emptyPage)
     throws DiskMgrException {
@@ -825,7 +824,6 @@ public class DB implements GlobalConst {
 
   /**
    * short cut to access the unpinPage function in bufmgr package.
-   * @see bufmgr.unpinPage
    */
   private void unpinPage(PageId pageno, boolean dirty)
     throws DiskMgrException {
@@ -941,7 +939,7 @@ class DBHeaderPage implements PageUsedBytes, GlobalConst {
   /**
    * initialize file entries as empty
    * @param empty invalid page number (=-1)
-   * @param entryno file entry number
+   * @param entryNo file entry number
    * @exception IOException I/O errors
    */
   private void initFileEntry(int empty, int entryNo)
@@ -952,9 +950,9 @@ class DBHeaderPage implements PageUsedBytes, GlobalConst {
   
   /**
    * set file entry
-   * @param pageno page ID
+   * @param pageNo page ID
    * @param fname the file name
-   * @param entryno file entry number
+   * @param entryNo file entry number
    * @exception IOException I/O errors
    */  
   public  void setFileEntry(PageId pageNo, String fname, int entryNo)
@@ -967,7 +965,7 @@ class DBHeaderPage implements PageUsedBytes, GlobalConst {
   
   /**
    * return file entry info
-   * @param pageno page Id
+   * @param pageNo page Id
    * @param entryNo the file entry number
    * @return file name
    * @exception IOException I/O errors

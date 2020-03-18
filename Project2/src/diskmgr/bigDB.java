@@ -149,7 +149,6 @@ public class bigDB implements GlobalConst {
             FileIOException,
             IOException {
 
-        pcounter.initialize();
         if((pageno.pid < 0)||(pageno.pid >= num_pages))
             throw new InvalidPageNumberException(null, "BAD_PAGE_NUMBER");
 
@@ -182,7 +181,6 @@ public class bigDB implements GlobalConst {
             FileIOException,
             IOException {
 
-        pcounter.initialize();
         if((pageno.pid < 0)||(pageno.pid >= num_pages))
             throw new InvalidPageNumberException(null, "INVALID_PAGE_NUMBER");
 
