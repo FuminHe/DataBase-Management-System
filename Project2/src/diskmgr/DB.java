@@ -14,7 +14,7 @@ public class DB implements GlobalConst {
   
   /** Open the database with the given name.
    *
-   * @param name DB_name
+   * @param fname DB_name
    *
    * @exception IOException I/O errors
    * @exception FileIOException file I/O error

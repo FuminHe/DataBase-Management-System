@@ -2,11 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4135d654-1f20-426b-b25d-d3f487bae631" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/global/MapOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/query.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/QueryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/TestDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project2/BigT/Stream.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/BigT/Stream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project2/diskmgr/DB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/diskmgr/DB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project2/diskmgr/DBDirectoryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/diskmgr/DBDirectoryPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project2/diskmgr/DBFirstPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/diskmgr/DBFirstPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project2/diskmgr/DBHeaderPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/diskmgr/DBHeaderPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project2/project2_main_func.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/project2_main_func.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BigT/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigT/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BigT/Stream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigT/Stream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BigT/bigt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigT/bigt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diskmgr/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diskmgr/DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diskmgr/bigDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diskmgr/bigDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diskmgr/pcounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diskmgr/pcounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iterator/DuplElim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/DuplElim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iterator/Sort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/Sort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iterator/SortMerge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/SortMerge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iterator/pnodePQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/pnodePQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iterator/pnodeSplayPQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/pnodeSplayPQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2_main_func.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2_main_func.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +49,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/tests" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -47,10 +63,20 @@
       <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\btree" />
       <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\heap" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\DataBase-Management-System\Project2\src\tests" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.project2_main_func">
     <configuration name="project2_main_func" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project2_main_func" />
+      <module name="project2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="query" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="query" />
       <module name="project2" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -59,6 +85,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.project2_main_func" />
+        <item itemvalue="Application.query" />
       </list>
     </recent_temporary>
   </component>
@@ -84,34 +111,46 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="99" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1584342276142" />
+    <state x="430" y="230" width="421" height="225" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1584844076389">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="430" y="230" width="421" height="225" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.680@0.0.1280.680" timestamp="1584844076389" />
     <state x="612" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584339493591">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="612" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1584339493591" />
-    <state width="708" height="2" key="GridCell.Tab.0.bottom" timestamp="1584407925402">
+    <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1584779909044">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="708" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584407925402" />
-    <state width="708" height="2" key="GridCell.Tab.0.center" timestamp="1584407925402">
+    <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1584779909044" />
+    <state width="1237" height="44" key="GridCell.Tab.0.bottom" timestamp="1584848033593">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="708" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1584407925402" />
-    <state width="708" height="2" key="GridCell.Tab.0.left" timestamp="1584407925402">
+    <state width="1237" height="44" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584848033593" />
+    <state width="1237" height="44" key="GridCell.Tab.0.center" timestamp="1584848033592">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="708" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1584407925402" />
-    <state width="708" height="2" key="GridCell.Tab.0.right" timestamp="1584407925402">
+    <state width="1237" height="44" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1584848033592" />
+    <state width="1237" height="44" key="GridCell.Tab.0.left" timestamp="1584848033592">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="708" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1584407925402" />
+    <state width="1237" height="44" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1584848033592" />
+    <state width="1237" height="44" key="GridCell.Tab.0.right" timestamp="1584848033593">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="44" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1584848033593" />
     <state x="153" y="38" key="SettingsEditor" timestamp="1584330044106">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="153" y="38" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1584330044106" />
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1584381082344">
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1584826030791">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584381082344" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584826030791" />
+    <state x="28" y="0" key="new project wizard" timestamp="1584776502402">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="28" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1584776502402" />
     <state x="507" y="159" key="run.anything.popup" timestamp="1584394890737">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -136,6 +175,22 @@
           </properties>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/BigT/bigt.java</url>
+          <line>743</line>
+          <properties class="BigT.bigt" method="getRowCnt">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/BigT/bigt.java</url>
+          <line>750</line>
+          <properties class="BigT.bigt" method="getColumnCnt">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/BigT/Map.java</url>
           <line>44</line>
@@ -153,11 +208,6 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/BigT/Stream.java</url>
-          <line>646</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/diskmgr/bigDB.java</url>
           <line>159</line>
           <option name="timeStamp" value="11" />
@@ -166,6 +216,16 @@
           <url>file://$PROJECT_DIR$/src/diskmgr/DB.java</url>
           <line>151</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BigT/Stream.java</url>
+          <line>960</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BigT/Map.java</url>
+          <line>513</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

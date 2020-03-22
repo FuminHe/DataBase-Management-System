@@ -42,7 +42,7 @@ public class Map implements GlobalConst {
      * private field
      * Number of fields in this map
      */
-    private short fldCnt = 4;
+    private short fldCnt;
 
     /**
      * private field
@@ -249,8 +249,8 @@ public class Map implements GlobalConst {
     public void mapCopy(Map fromMap) {
         byte [] temparray = fromMap.getMapByteArray();
         System.arraycopy(temparray, 0, data, map_offset, map_length);
-        fldCnt = fromMap.noOfFlds();
-        fldOffset = fromMap.copyFldOffset();
+//        fldCnt = fromMap.noOfFlds();
+//        fldOffset = fromMap.copyFldOffset();
     }
 
     /** This is used when you don't want to use the constructor
@@ -592,4 +592,39 @@ public class Map implements GlobalConst {
     {
         return 0;
     }
+
+    // attr types for map
+    public AttrType[] getAttrType(){
+        AttrType[] mapAttrtypes = new AttrType[4];
+        mapAttrtypes[0] = new AttrType (AttrType.attrString);
+        mapAttrtypes[1] = new AttrType (AttrType.attrString);
+        mapAttrtypes[2] = new AttrType (AttrType.attrInteger);
+        mapAttrtypes[3] = new AttrType (AttrType.attrString);
+
+        return mapAttrtypes;
+    }
+
+    // string sizes for map
+    public short[] getMapSizes(){
+        //bigt temp = new bigt();
+        short[] mapSizes = new short[3];
+        mapSizes[0] = 30;
+        mapSizes[1] = 30;
+        mapSizes[2] = 30;
+
+        return mapSizes;
+    }
+
+//    private short[] mapSizes;
+//    public void setMapSizes(short maxRow, short maxCol, short maxTS){
+//        //bigt temp = new bigt();
+////        maxRow = 30;
+////        maxCol = 30;
+////        maxTS = 30;
+//
+//        this.mapSizes = new short[3];
+//        this.mapSizes[0] = maxRow;
+//        this.mapSizes[1] = maxCol;
+//        this.mapSizes[2] = maxTS;
+//    }
 }

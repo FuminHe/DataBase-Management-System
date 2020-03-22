@@ -76,7 +76,7 @@ public class DuplElim extends Iterator
 	}
       
       _am = am;
-      TupleOrder order = new TupleOrder(TupleOrder.Ascending);
+      MapOrder order = new MapOrder(MapOrder.Ascending);
       if (!inp_sorted)
 	{
 	  try {

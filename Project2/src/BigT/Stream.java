@@ -4,12 +4,16 @@ import btree.*;
 import diskmgr.Page;
 import global.*;
 import heap.*;
+import iterator.FileScan;
+import iterator.FldSpec;
+import iterator.RelSpec;
+import iterator.Sort;
 
 import java.io.IOException;
 
 public class Stream implements GlobalConst {
     /** The heapfile we are using. */
-    private bigt _hf;
+    private bigt _hf, bigTable;
 
     /** PageId of current directory page (which is itself an HFPage) */
     private PageId dirpageId = new PageId();
@@ -44,11 +48,11 @@ public class Stream implements GlobalConst {
 //     *
 //     * @param hf A HeapFile object
 //     */
-//    public Stream(bigt hf)
-//            throws InvalidMapSizeException,
-//            IOException {
-//        init(hf);
-//    }
+    public Stream(bigt hf)
+            throws InvalidMapSizeException,
+            IOException {
+        init(hf);
+    }
 
     /** Retrieve the next record in a sequential scan
      *
@@ -630,31 +634,397 @@ public class Stream implements GlobalConst {
     /**
      * Initialize a stream of maps on bigtable.
      */
-    private BTFileScan BTreeFileScan;
+    private BTFileScan BTreeFileScan,BTreeFileScan1;
+    private BTreeFile bTreeFile;
+    private boolean NobTreeScan = false;
     public Stream(bigt bigtable, int orderType, String rowFilter,
                    String columnFilter, String valueFilter)
             throws IOException,
-            InvalidMapSizeException {
+            InvalidMapSizeException, HFDiskMgrException, HFBufMgrException, HFException {
 
+        this.bigTable = bigtable;
         // get the key filter
         String[] rFilter = getKeyFilter(rowFilter);
         String[] cFilter = getKeyFilter(columnFilter);
         String[] vFilter = getKeyFilter(valueFilter);
 
-//        // get the type of big table
-//        int bigtType = bigtable.getBigtType();
-//        BTreeFile btfile = null;
-//        switch (bigtType){
-//            case 1: // no index
-//                break;
-//            case 2: // one btree to index row labels
-//
-//                BTreeFileScan = btfile.new_scan(new StringKey(rFilter[0]),cFilter[0]);
-//        }
+        // test query
+        // get the type of big table
+        // and initialize the scan
+        int bigtType = bigtable.getBigtType();
+        switch (bigtType){
+            case 1: // no index
+                NobTreeScan = true;
+                break;
+            case 2: // one btree to index row labels
+                //System.out.println("the type is 2, should go here");
+                if(rFilter[0].equals("*")){
+                    NobTreeScan = true;
+                }
+                else{
+                    getBTFile(1);
+                    try{
+                        BTreeFileScan = bTreeFile.new_scan(new StringKey(rFilter[0]),
+                                new StringKey(rFilter[rFilter.length - 1]));
 
+//                        KeyDataEntry entry = BTreeFileScan.get_next();
+//                        int i = 0;
+//                        while (entry != null){
+//                            System.out.println("---------" + i + "-------");
+//                            i ++;
+//                            entry = BTreeFileScan.get_next();
+//                        }
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+                break;
+            case 4:
+                // BTreeFileScan = row + column
+                if(rFilter[0].equals("*") && cFilter[0].equals("*")){
+                    NobTreeScan = true;
+                }
+                else{
+                    getBTFile(2);
+                    if(rFilter[0].equals("*")){
+                        try{
+                            BTreeFileScan = bTreeFile.new_scan(new StringKey(null+cFilter[0]),
+                                    new StringKey(null+cFilter[cFilter.length-1]));
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else if(cFilter[0].equals("*")){
+                        try{
+                            BTreeFileScan = bTreeFile.new_scan(new StringKey(rFilter[0]+null),
+                                    new StringKey(rFilter[rFilter.length - 1]+null));
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else{
+                        try{
+                            BTreeFileScan = bTreeFile.new_scan(new StringKey(rFilter[0]+cFilter[0]),
+                                    new StringKey(rFilter[rFilter.length - 1]+cFilter[cFilter.length-1]));
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                // BTreeFileScan1 = timeStamps
+                getBTFile(3);
+                try{
+                    BTreeFileScan1 = bTreeFile.new_scan(null,null);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                System.out.println("the big table type should be 1,2 or 4");
+        }
+
+        // sort
+        sortData(orderType,rFilter,cFilter,vFilter);
         // order type:
         // type 3: first ordered in row label, then time stamp
         // type 4:  first ordered in column label, then time stamp
+
+    }
+
+    private void sortData(int orderType, String[] rFilter,
+                          String[] cFilter, String[] vFilter) throws IOException, HFException, HFBufMgrException, HFDiskMgrException {
+
+        Heapfile filteredData = new Heapfile("filteredData");
+        MID mid = null;
+        Map map = null;
+
+        // scan the whole table
+        if (NobTreeScan){
+            try {
+                Stream scan = new Stream(bigTable);
+                mid = new MID();
+                map = scan.getNext(mid);
+
+                while (map != null){
+                    map.setHdr((short) 4, map.getAttrType(), map.getMapSizes());
+                    if(scanRest(map, rFilter,cFilter,vFilter)){
+                        // true: match all the condition
+                        // --> insert into the file
+                        filteredData.insertMap(map.returnMapByteArray());
+                    }
+                    map = scan.getNext(mid);
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            try{
+                //System.out.println("Should go here, it is scanned ");
+                KeyDataEntry entry = BTreeFileScan.get_next();
+                while (entry != null){
+                    mid = ((LeafData)entry.data).getData();
+                    if(mid != null){
+                        map = bigTable.getRecord(mid);
+                        map.setHdr((short) 4, map.getAttrType(), map.getMapSizes());
+                        System.out.println(scanRest(map, rFilter,cFilter,vFilter));
+                        if(scanRest(map, rFilter,cFilter,vFilter)){
+                            // true: match all the condition
+                            // --> insert into the file
+                            filteredData.insertMap(map.returnMapByteArray());
+                        }
+                    }
+                    entry = BTreeFileScan.get_next();
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // create a projection list
+        FldSpec[] proj_list = new FldSpec[4];
+        proj_list[0] = new FldSpec(new RelSpec(RelSpec.outer), 1);
+        proj_list[1] = new FldSpec(new RelSpec(RelSpec.outer), 2);
+        proj_list[2] = new FldSpec(new RelSpec(RelSpec.outer), 3);
+        proj_list[3] = new FldSpec(new RelSpec(RelSpec.outer), 4);
+
+        // create a scan on the filtered data
+        FileScan fileScan = null;
+        try{
+            fileScan = new FileScan("filteredData",map.getAttrType(),
+                    map.getMapSizes(),(short)4,(short)4,
+                    proj_list,null);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // sort data by oder type
+        MapOrder ascending = new MapOrder(MapOrder.Ascending);
+        Sort sort = null;
+
+        AttrType[] in = map.getAttrType();
+        short[] str_sizes = map.getMapSizes();
+        switch (orderType){
+            case 3: // row label, time stamps
+                //System.out.println("should go here, order type is 3");
+                try {
+                    sort = new Sort (in,(short)4, str_sizes,
+                            (iterator.Iterator) fileScan, 1, ascending, str_sizes[0], 10);
+                }
+                catch (Exception e) {
+                    System.err.println ("*** Error sorting ***");
+                }
+                break;
+            case 4: // column label, time,stamps
+                try {
+                    sort = new Sort (in,(short)4, str_sizes,
+                            (iterator.Iterator) fileScan, 2, ascending, str_sizes[1], 10);
+                }
+                catch (Exception e) {
+                    System.err.println ("*** Error sorting ***");
+                }
+                break;
+            default:
+                System.out.println("order type should be 3 or 4");
+        }
+
+        // print the sorted result
+        Map t = null;
+        try {
+            while ((t = sort.get_next()) != null) {
+                t.print(in);
+            }
+        }
+        catch (Exception e) {
+            System.err.println (""+e);
+            e.printStackTrace();
+        }
+    }
+
+    private boolean scanRest(Map map, String[] rFilter, String[] cFilter,
+                          String[] vFilter) throws IOException {
+
+        String row = map.getRowLabel();
+        String col = map.getColumnLabel();
+        String value = map.getValue();
+
+        boolean rowFlag;
+        boolean colFlag;
+        boolean valueFlag;
+
+        // compare row
+        if(rFilter[0].equals("*")){
+            rowFlag = true;
+        }
+        else{
+            if(rFilter.length == 1){
+                rowFlag = rFilter[0].compareTo(row) == 0;
+            }
+            else{
+                rowFlag = rFilter[0].compareTo(row) < 0
+                        && rFilter[1].compareTo(row) > 0;
+            }
+        }
+        // compare column
+        if(cFilter[0].equals("*")){
+            colFlag = true;
+        }
+        else{
+            if(cFilter.length == 1){
+                colFlag = cFilter[0].compareTo(col) == 0;
+            }
+            else{
+                colFlag = cFilter[0].compareTo(col) < 0 &&
+                            cFilter[1].compareTo(col) > 0;
+            }
+        }
+        // compare value
+        if(vFilter[0].equals("*")){
+            valueFlag = true;
+        }
+        else{
+            if(vFilter.length == 1){
+                valueFlag = vFilter[0].compareTo(value) == 0;
+            }
+            else{
+                valueFlag =  vFilter[0].compareTo(value) < 0 &&
+                        vFilter[1].compareTo(value) > 0;
+            }
+        }
+
+//        System.out.println("rowFlag: " + rowFlag
+//                + " colFlag: " + colFlag + " valueFlag: "+ valueFlag);
+        return rowFlag && colFlag && valueFlag;
+    }
+
+    /**
+     *
+     * @param IndexType 1: row index; 2: row + column; 3: time stamp
+     */
+    private void getBTFile(int IndexType) {
+
+        // scan the big table
+        Stream scan = null;
+        try {
+            scan = new Stream(bigTable);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Runtime.getRuntime().exit(1);
+        }
+        MID m_id = new MID();
+        Map temp = null;
+
+        try {
+            temp = scan.getNext(m_id);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Map tt = new Map();
+        AttrType[] mapAttrType = tt.getAttrType();
+        short[] mapSizes = tt.getMapSizes();
+        try {
+            tt.setHdr((short) 4, mapAttrType, mapSizes);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int sizett = tt.size();
+        tt = new Map(sizett);
+        try {
+            tt.setHdr((short) 4, mapAttrType, mapSizes);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // create b tree file
+        String key = "";
+        String key1= "";
+        try {
+            switch (IndexType){
+                case 1:// row index
+                    bTreeFile = new BTreeFile("BTreeIndex_row",
+                            AttrType.attrString,
+                            mapSizes[0], 1);
+
+                    while (temp != null){
+                        tt.mapCopy(temp);
+                        //System.out.println("temp is not null");
+                        try{
+                            key = tt.getStrFld(1);
+                            bTreeFile.insert(new StringKey(key), m_id);
+                            temp = scan.getNext(m_id);
+                            //System.out.println("the key " + i + "is: "+ key);
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                case 2:// row + column
+                    int keysize = mapSizes[0] + mapSizes[1];
+                    bTreeFile = new BTreeFile("BTreeIndex_rowAndcol",
+                            AttrType.attrString,keysize,1);
+
+                    while (temp != null){
+                        tt.mapCopy(temp);
+                        //System.out.println("temp is not null");
+                        try{
+                            key = tt.getStrFld(1);
+                            key1 = tt.getStrFld(2);
+                            bTreeFile.insert(new StringKey(key+key1), m_id);
+                            temp = scan.getNext(m_id);
+                            //System.out.println("the key " + i + "is: "+ key);
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                case 3: // time stamp
+                    bTreeFile = new BTreeFile("BTreeIndex_time",
+                            AttrType.attrString,
+                            mapSizes[2], 1);
+
+                    while (temp != null){
+                        tt.mapCopy(temp);
+                        //System.out.println("temp is not null");
+                        try{
+                            int key2 = tt.getIntFld(3);
+                            bTreeFile.insert(new IntegerKey(key2), m_id);
+                            temp = scan.getNext(m_id);
+                            //System.out.println("the key " + i + "is: "+ key);
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                default:
+                    System.out.println("the index type is not valid, please use 1,2 or 3");
+
+            }
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Runtime.getRuntime().exit(1);
+        }
 
     }
 

@@ -22,7 +22,7 @@ public class SortMerge extends Iterator implements GlobalConst
   private  int        in1_len, in2_len;
   private  Iterator  p_i1,        // pointers to the two iterators. If the
     p_i2;               // inputs are sorted, then no sorting is done
-  private  TupleOrder  _order;                      // The sorting order.
+  private  MapOrder  _order;                      // The sorting order.
   private  CondExpr  OutputFilter[];
   
   private  boolean      get_from_in1, get_from_in2;        // state variables for get_next
@@ -31,7 +31,7 @@ public class SortMerge extends Iterator implements GlobalConst
   private  short     inner_str_sizes[];
   private  IoBuf    io_buf1,  io_buf2;
   private  Map     TempTuple1,  TempTuple2;
-  private  Map tuple1,  tuple2;
+  private  Map     tuple1,  tuple2;
   private  boolean       done;
   private  byte    _bufs1[][],_bufs2[][];
   private  int        _n_pages; 
@@ -87,7 +87,7 @@ public class SortMerge extends Iterator implements GlobalConst
 		   
 		   boolean     in1_sorted,                
 		   boolean     in2_sorted,                
-		   TupleOrder order,
+		   MapOrder order,
 		   
 		   CondExpr  outFilter[],                
 		   FldSpec   proj_list[],
@@ -281,8 +281,8 @@ public class SortMerge extends Iterator implements GlobalConst
 	      // this loop will be modified.
 	      comp_res = MapUtils.CompareMapWithMap(sortFldType, tuple1,
 							  jc_in1, tuple2, jc_in2);
-	      while ((comp_res < 0 && _order.tupleOrder == TupleOrder.Ascending) ||
-		     (comp_res > 0 && _order.tupleOrder == TupleOrder.Descending))
+	      while ((comp_res < 0 && _order.mapOrder == MapOrder.Ascending) ||
+		     (comp_res > 0 && _order.mapOrder == MapOrder.Descending))
 		{
 		  if ((tuple1 = p_i1.get_next()) == null) {
 		    done = true;
@@ -295,8 +295,8 @@ public class SortMerge extends Iterator implements GlobalConst
 	      
 	      comp_res = MapUtils.CompareMapWithMap(sortFldType, tuple1,
 							  jc_in1, tuple2, jc_in2);
-	      while ((comp_res > 0 && _order.tupleOrder == TupleOrder.Ascending) ||
-		     (comp_res < 0 && _order.tupleOrder == TupleOrder.Descending))
+	      while ((comp_res > 0 && _order.mapOrder == MapOrder.Ascending) ||
+		     (comp_res < 0 && _order.mapOrder == MapOrder.Descending))
 		{
 		  if ((tuple2 = p_i2.get_next()) == null)
 		    {

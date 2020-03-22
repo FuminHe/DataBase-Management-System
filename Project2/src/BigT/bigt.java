@@ -28,6 +28,10 @@ public class bigt implements Filetype, GlobalConst {
     private String bigtName;
     private int bigtType;
 
+    private short maxRowLen;
+    private short maxColLen;
+    private short maxValLen;
+
     /* get a new datapage from the buffer manager and initialize dpinfo
        @param dpinfop the information in the new HFPage
     */
@@ -1009,5 +1013,26 @@ public class bigt implements Filetype, GlobalConst {
     public int getBigtType(){
         return this.bigtType;
     }
+
+    // get and set max row/column/value length
+//    public void setMaxRowLen(short value){
+//        this.maxRowLen = value;
+//    }
+//    public void setMaxColLen(short value){
+//        this.maxColLen = value;
+//    }
+//    public void setMaxValLen(short value){
+//        this.maxValLen = value;
+//    }
+//
+//    public short getMaxRowLen(){
+//        return maxRowLen;
+//    }
+//    public short getMaxColLen(){
+//        return maxColLen;
+//    }
+//    public short getMaxValLen(){
+//        return maxValLen;
+//    }
 }
 
