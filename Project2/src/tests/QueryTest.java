@@ -14,12 +14,13 @@ import bufmgr.*;
 import btree.*;
 import catalog.*;
 
-class queryDriver implements GlobalConst {
-    private bigt bigTable;
+class QueryTest{
+    //private bigt bigTable;
+    private String dbpath;
 
-    public queryDriver(){
-        String dbpath = "/tmp/"+System.getProperty("user.name")+".minibase.querytestdb";
-        String logpath = "/tmp/"+System.getProperty("user.name")+".querylog";
+    public QueryTest(){
+        dbpath = "/tmp/"+System.getProperty("user.name")+".minibase.testdb";
+        String logpath = "/tmp/"+System.getProperty("user.name")+".testlog";
 
         String remove_cmd = "/bin/rm -rf ";
         String remove_logcmd = remove_cmd + logpath;
@@ -34,74 +35,45 @@ class queryDriver implements GlobalConst {
         catch(IOException e) {
             System.err.println (""+e);
         }
-
-        SystemDefs sysdef = new SystemDefs( dbpath, 1000, NUMBUF, "Clock" );
-
     }
 
-    public void runTest(){
-        int choice = Menu();
-        while (choice != 2){
-            pcounter.initialize();
-            String[] query = getQuery();
-            batchInsert(query[0],Integer.parseInt(query[1]));
-            try{
-                Stream stream = new Stream(bigTable,Integer.parseInt(query[2]),
-                        query[3],query[4],query[5]);
-                int readCount = pcounter.rcounter;
-                int writeCount = pcounter.wcounter;
+    public void runQueryTest(bigt bigTable){
+        System.out.println("bigt name: " + bigTable.getBigtName() +
+                ", bigt type: " + bigTable.getBigtType());
 
-                System.out.println("The read count is: " + readCount);
-                System.out.println("The write count is: " + writeCount);
+//        try{
+//            System.out.println("bigt map count: " + bigTable.getMapCnt());
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
+
+        String[] query = getQuery();
+//        SystemDefs sysdef = new SystemDefs(dbpath, 1000,
+//                Integer.parseInt(query[6]), "Clock" );
+
+        // check table name and type
+        if(!bigTable.getBigtName().equals(query[0]) &&
+                bigTable.getBigtType() != Integer.parseInt(query[1])){
+            System.out.println("Please enter the correct table name/type");
+        }
+        else{
+            try {
+                //bigTable = new bigt(query[0],Integer.parseInt(query[1]));
+//                Stream stream = new Stream(bigTable,Integer.parseInt(query[2]),
+//                        query[3],query[4],query[5]);
+                Stream stream = bigTable.openStream(Integer.parseInt(query[2]),
+                        query[3],query[4],query[5]);
+                //stream.closestream();
             }
-            catch (Exception e) {
+            catch (Exception e){
                 e.printStackTrace();
             }
-
-            choice = Menu();
         }
     }
 
-    private void batchInsert(String bigtName, int bigtType) {
-        // data file
-        String fileName = "project2_testdata.csv";
-        String line = "";
-        Map map = null;
-        MID mid;
-
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
-            // need further correction
-            map.setHdr((short)4,map.getAttrType(),map.getMapSizes());
-            bigTable = new bigt(bigtName,2);
-
-            while ((line = br.readLine()) != null) {
-                String[] mapString = line.split(",");
-                map.setStrFld(1, mapString[0]);
-                map.setStrFld(2, mapString[1]);
-                map.setIntFld(3, Integer.parseInt(mapString[2]));
-                map.setStrFld(4, mapString[3]);
-
-                mid = bigTable.insertMap(map.getMapByteArray());
-            }
-
-            System.out.println("Complete File Inserting");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public int Menu(){
-        System.out.println("--------------Query Test-----------");
-        System.out.println("[1] start test");
-        System.out.println("[2] Exit");
-
-        return Integer.parseInt(getCommand());
-    }
     public String[] getQuery(){
-        String[] query = new String[6];
+        String[] query = new String[7];
         // BIGTABLENAME
         System.out.println("Please enter your big table name:");
         query[0] = getCommand();
@@ -123,6 +95,9 @@ class queryDriver implements GlobalConst {
         System.out.println("Please enter value filter:");
         query[5] = getCommand();
 
+        System.out.println("Please enter NUMBUF(50)");
+        query[6] = getCommand();
+
         return query;
     }
 
@@ -142,10 +117,4 @@ class queryDriver implements GlobalConst {
 
 }
 
-public class QueryTest {
-    public static void main(String argv[]){
-        queryDriver jjoin = new queryDriver();
-        jjoin.runTest();
-    }
-}
 

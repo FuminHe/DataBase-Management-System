@@ -991,14 +991,14 @@ public class bigt implements Filetype, GlobalConst {
         return mid;
     }
 
-//    /**
-//     *Initialize a stream of maps
-//     */
-//    public Stream openStream(int orderType, String rowFilter,
-//                             String columnFilter, String valueFilter){
-//        Stream newStream = new Stream(this,orderType,rowFilter,columnFilter,valueFilter);
-//        return newStream;
-//    }
+    /**
+     *Initialize a stream of maps
+     */
+    public Stream openStream(int orderType, String rowFilter,
+                             String columnFilter, String valueFilter) throws HFBufMgrException, HFDiskMgrException, HFException, InvalidMapSizeException, IOException {
+        Stream newStream = new Stream(this,orderType,rowFilter,columnFilter,valueFilter);
+        return newStream;
+    }
 //    public Scan openScan()
 //            throws InvalidMapSizeException,
 //            IOException

@@ -11,11 +11,17 @@ JAVA  = $(JDKPATH)/bin/java  -classpath $(CLASSPATH)
 
 # test query
 
-QueryTest:QueryTest.java
-	$(JAVAC) TestDriver.java QueryTest.java
+Test:project2_main_func.java
+	$(JAVAC) TestDriver.java project2_main_func.java
 
-query: QueryTest
-	$(JAVA) tests.QueryTest
+main: Test
+	$(JAVA) tests.project2_main_func
 
+# test 
+#project2_main_func: project2_main_func.java
+ #   $(JAVAC) TestDriver.java insert.java project2_main_func.java 
+    
+#main: project2_main_func
+#	$(JAVA) project2_main_func.java
 
 

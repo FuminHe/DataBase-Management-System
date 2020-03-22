@@ -39,7 +39,7 @@ public class Stream implements GlobalConst {
     private boolean nextUserStatus;
 
 
-//    /** The constructor pins the first directory page in the file
+    //    /** The constructor pins the first directory page in the file
 //     * and initializes its private data members from the private
 //     * data member from hf
 //     *
@@ -636,13 +636,16 @@ public class Stream implements GlobalConst {
      */
     private BTFileScan BTreeFileScan,BTreeFileScan1;
     private BTreeFile bTreeFile;
-    private boolean NobTreeScan = false;
+    private boolean NobTreeScan = true;
+    private Stream scan;
+
     public Stream(bigt bigtable, int orderType, String rowFilter,
-                   String columnFilter, String valueFilter)
+                  String columnFilter, String valueFilter)
             throws IOException,
             InvalidMapSizeException, HFDiskMgrException, HFBufMgrException, HFException {
 
         this.bigTable = bigtable;
+        scan = new Stream(bigtable);
         // get the key filter
         String[] rFilter = getKeyFilter(rowFilter);
         String[] cFilter = getKeyFilter(columnFilter);
@@ -662,6 +665,7 @@ public class Stream implements GlobalConst {
                     NobTreeScan = true;
                 }
                 else{
+                    NobTreeScan = false;
                     getBTFile(1);
                     try{
                         BTreeFileScan = bTreeFile.new_scan(new StringKey(rFilter[0]),
@@ -688,6 +692,7 @@ public class Stream implements GlobalConst {
                     NobTreeScan = true;
                 }
                 else{
+                    NobTreeScan = false;
                     getBTFile(2);
                     if(rFilter[0].equals("*")){
                         try{
@@ -743,18 +748,33 @@ public class Stream implements GlobalConst {
                           String[] cFilter, String[] vFilter) throws IOException, HFException, HFBufMgrException, HFDiskMgrException {
 
         Heapfile filteredData = new Heapfile("filteredData");
-        MID mid = null;
+        //MID mid = null;
         Map map = null;
 
         // scan the whole table
         if (NobTreeScan){
             try {
-                Stream scan = new Stream(bigTable);
-                mid = new MID();
-                map = scan.getNext(mid);
+                // scan the big table
+                Stream scan = null;
+                try {
+                    scan = new Stream(bigTable);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                    Runtime.getRuntime().exit(1);
+                }
+                MID mid = new MID();
+
+                try {
+                    map = scan.getNext(mid);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 while (map != null){
                     map.setHdr((short) 4, map.getAttrType(), map.getMapSizes());
+                    //System.out.println(map.getRowLabel());
                     if(scanRest(map, rFilter,cFilter,vFilter)){
                         // true: match all the condition
                         // --> insert into the file
@@ -762,6 +782,7 @@ public class Stream implements GlobalConst {
                     }
                     map = scan.getNext(mid);
                 }
+                map = bigTable.getRecord(mid);
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -772,11 +793,11 @@ public class Stream implements GlobalConst {
                 //System.out.println("Should go here, it is scanned ");
                 KeyDataEntry entry = BTreeFileScan.get_next();
                 while (entry != null){
-                    mid = ((LeafData)entry.data).getData();
+                    MID mid = ((LeafData)entry.data).getData();
                     if(mid != null){
                         map = bigTable.getRecord(mid);
                         map.setHdr((short) 4, map.getAttrType(), map.getMapSizes());
-                        System.out.println(scanRest(map, rFilter,cFilter,vFilter));
+                        //System.out.println(scanRest(map, rFilter,cFilter,vFilter));
                         if(scanRest(map, rFilter,cFilter,vFilter)){
                             // true: match all the condition
                             // --> insert into the file
@@ -790,6 +811,13 @@ public class Stream implements GlobalConst {
                 e.printStackTrace();
             }
         }
+
+//        try {
+//            System.out.println("map count"+filteredData.getMapCnt());
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
 
         // create a projection list
         FldSpec[] proj_list = new FldSpec[4];
@@ -839,33 +867,44 @@ public class Stream implements GlobalConst {
                 System.out.println("order type should be 3 or 4");
         }
 
-        // store result to file?
+        // print the sorted result
         Map t = null;
+        int i = 0;
         try {
             while ((t = sort.get_next()) != null) {
                 t.print(in);
+                i++;
             }
+            System.out.println("There are " + i + " maps are found");
         }
         catch (Exception e) {
             System.err.println (""+e);
             e.printStackTrace();
         }
 
-        //delete the filtered data file
-        try {
-            fileScan.close();
-            BTreeFileScan.DestroyBTreeFileScan();
+        // finish and delete
+        try{
+            //BTreeFileScan.DestroyBTreeFileScan();
+            //BTreeFileScan1.DestroyBTreeFileScan();
+            //fileScan.close();
+            if(bTreeFile != null){
+                bTreeFile.destroyFile();
+            }
+
             filteredData.deleteFile();
+
+            if(sort != null){
+                sort.close();
+            }
+
         }
-        catch (Exception e) {
+        catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 
     private boolean scanRest(Map map, String[] rFilter, String[] cFilter,
-                          String[] vFilter) throws IOException {
+                             String[] vFilter) throws IOException {
 
         String row = map.getRowLabel();
         String col = map.getColumnLabel();
@@ -881,11 +920,11 @@ public class Stream implements GlobalConst {
         }
         else{
             if(rFilter.length == 1){
-                rowFlag = rFilter[0].compareTo(row) == 0;
+                rowFlag = rFilter[0].compareTo(row.substring(0,1)) == 0;
             }
             else{
-                rowFlag = rFilter[0].compareTo(row) < 0
-                        && rFilter[1].compareTo(row) > 0;
+                rowFlag = rFilter[0].compareTo(row.substring(0,1)) < 0
+                        && rFilter[1].compareTo(row.substring(0,1)) > 0;
             }
         }
         // compare column
@@ -894,11 +933,11 @@ public class Stream implements GlobalConst {
         }
         else{
             if(cFilter.length == 1){
-                colFlag = cFilter[0].compareTo(col) == 0;
+                colFlag = cFilter[0].compareTo(col.substring(0,1)) == 0;
             }
             else{
-                colFlag = cFilter[0].compareTo(col) < 0 &&
-                            cFilter[1].compareTo(col) > 0;
+                colFlag = cFilter[0].compareTo(col.substring(0,1)) < 0 &&
+                        cFilter[1].compareTo(col.substring(0,1)) > 0;
             }
         }
         // compare value
@@ -907,11 +946,11 @@ public class Stream implements GlobalConst {
         }
         else{
             if(vFilter.length == 1){
-                valueFlag = vFilter[0].compareTo(value) == 0;
+                valueFlag = vFilter[0].compareTo(value.substring(0,1)) == 0;
             }
             else{
-                valueFlag =  vFilter[0].compareTo(value) < 0 &&
-                        vFilter[1].compareTo(value) > 0;
+                valueFlag =  vFilter[0].compareTo(value.substring(0,1)) < 0 &&
+                        vFilter[1].compareTo(value.substring(0,1)) > 0;
             }
         }
 
@@ -1059,3 +1098,4 @@ public class Stream implements GlobalConst {
         return flt;
     }
 }
+

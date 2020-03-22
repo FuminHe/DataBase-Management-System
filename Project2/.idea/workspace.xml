@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4135d654-1f20-426b-b25d-d3f487bae631" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/tests/insert.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/project2_main_func.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BigT/Stream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigT/Stream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BigT/bigt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigT/bigt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2_main_func.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/QueryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/QueryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +53,20 @@
       <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\btree" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.project2_main_func">
+  <component name="RunManager" selected="Application.project2_main_func (1)">
+    <configuration name="project2_main_func (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tests.project2_main_func" />
+      <module name="project2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="project2_main_func" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project2_main_func" />
       <module name="project2" />
@@ -66,6 +83,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.project2_main_func (1)" />
         <item itemvalue="Application.project2_main_func" />
         <item itemvalue="Application.query" />
       </list>
@@ -125,10 +143,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="153" y="38" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1584330044106" />
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1584850434246">
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1584899834974">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584850434246" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584899834974" />
     <state x="28" y="0" key="new project wizard" timestamp="1584776502402">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -200,19 +218,34 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/BigT/Stream.java</url>
-          <line>972</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/BigT/Map.java</url>
           <line>513</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/tests/QueryTest.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="19" />
+          <url>file://$PROJECT_DIR$/src/diskmgr/DB.java</url>
+          <line>307</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bufmgr/BufMgr.java</url>
+          <line>899</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BigT/Stream.java</url>
+          <line>970</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BigT/Stream.java</url>
+          <line>780</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/BigT/Stream.java</url>
+          <line>922</line>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

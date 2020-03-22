@@ -43,7 +43,7 @@ doc:
 	$(JAVADOC) $(DOCFILES)
 
 test: 
-	cd tests; whoami; make query
+	cd tests; whoami; make main
 
 clean:
 	\rm -f $(CLASSPATH)/*.class *~ \#* core $(JARFILES) TRACE
