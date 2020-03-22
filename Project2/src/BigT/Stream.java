@@ -839,7 +839,7 @@ public class Stream implements GlobalConst {
                 System.out.println("order type should be 3 or 4");
         }
 
-        // print the sorted result
+        // store result to file?
         Map t = null;
         try {
             while ((t = sort.get_next()) != null) {
@@ -850,6 +850,18 @@ public class Stream implements GlobalConst {
             System.err.println (""+e);
             e.printStackTrace();
         }
+
+        //delete the filtered data file
+        try {
+            fileScan.close();
+            BTreeFileScan.DestroyBTreeFileScan();
+            filteredData.deleteFile();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     private boolean scanRest(Map map, String[] rFilter, String[] cFilter,

@@ -2,27 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4135d654-1f20-426b-b25d-d3f487bae631" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/global/MapOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/query.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/QueryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/TestDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project2/BigT/Stream.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/BigT/Stream.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project2/diskmgr/DB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/diskmgr/DB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project2/diskmgr/DBDirectoryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/diskmgr/DBDirectoryPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project2/diskmgr/DBFirstPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/diskmgr/DBFirstPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project2/diskmgr/DBHeaderPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/diskmgr/DBHeaderPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project2/project2_main_func.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project2/project2_main_func.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BigT/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigT/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BigT/Stream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigT/Stream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BigT/bigt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigT/bigt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diskmgr/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diskmgr/DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iterator/DuplElim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/DuplElim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iterator/Sort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/Sort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iterator/SortMerge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/SortMerge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iterator/pnodePQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/pnodePQ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iterator/pnodeSplayPQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iterator/pnodeSplayPQ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2_main_func.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2_main_func.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/QueryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/QueryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,15 +38,15 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\DataBase-Management-System\Project2\src\tests" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\DataBase-Management-System\Project2\src\tests" />
       <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\iterator" />
       <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\index" />
       <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\catalog" />
       <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\btree" />
-      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\new\src\heap" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\StudyMaterial\2020Spring\CSE510\assignment\project2\DataBase-Management-System\Project2\src\tests" />
     </key>
   </component>
   <component name="RunManager" selected="Application.project2_main_func">
@@ -143,10 +125,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="153" y="38" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1584330044106" />
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1584826030791">
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1584850434246">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584826030791" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584850434246" />
     <state x="28" y="0" key="new project wizard" timestamp="1584776502402">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -219,13 +201,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/BigT/Stream.java</url>
-          <line>960</line>
+          <line>972</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/BigT/Map.java</url>
           <line>513</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/tests/QueryTest.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
